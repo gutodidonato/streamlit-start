@@ -1,5 +1,5 @@
 import time
-from dataset import df
+from components.dataset import df
 import pandas as pd
 import streamlit as st
 

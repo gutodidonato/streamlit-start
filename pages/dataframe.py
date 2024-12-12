@@ -1,6 +1,6 @@
 import streamlit as st
-from dataset import df
-from utils import convert_csv, mensagem_sucesso
+from components.dataset import df
+from components.utils import convert_csv, mensagem_sucesso
 
 st.title('Dataframe')
 with st.expander('Colunas'):
