@@ -1,5 +1,7 @@
+import time
 from dataset import df
 import pandas as pd
+import streamlit as st
 
 def format_number(value, prefix=''):
     for unit in ['', ' mil', ' milhões']:
@@ -51,3 +53,29 @@ df_rec_diario['Dia'] = df_rec_diario['Data da Compra'].dt.day
 
 
 df_categoria = df.groupby('Categoria do Produto')[['Preço']].sum().sort_values('Preço', ascending=False)
+
+
+#======================================================
+# Receita Vendedores
+#======================================================
+
+
+df_vendedores = df.groupby('Vendedor')['Preço'].agg(['sum', 'count']).reset_index()
+df_vendedores.rename(columns={'sum': 'Receita', 'count': 'Vendas'}, inplace=True)
+
+# Ordenar os DataFrames
+df_vendedores_mais_dinheiro = df_vendedores.sort_values('Receita', ascending=False)
+df_vendedores_mais_vendas = df_vendedores.sort_values('Vendas', ascending=False)
+
+#======================================================
+# Converter arquivo CSV
+#======================================================
+@st.cache_data
+def convert_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
+def mensagem_sucesso():
+    success = st.success(
+        "Arquivo CSV gerado com sucesso!"
+    )
+    time.sleep(3)
+    success.empty()
