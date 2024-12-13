@@ -2,6 +2,7 @@ import pydeck as pdk
 from components.utils import df_rec_estado, df_rec_mensal, df_categoria
 import plotly.express as px
 import streamlit as st
+import plotly.graph_objects as go
 
 def create_pydeck_map(data):
     data['color'] = data['Preço'].apply(

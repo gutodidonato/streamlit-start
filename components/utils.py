@@ -35,7 +35,6 @@ df_rec_mensal = (
       .sum()
       .reset_index()
 )
-print(df_rec_mensal)
 # Extraindo ano e mês
 df_rec_mensal['Ano'] = df_rec_mensal['Data da Compra'].dt.year
 df_rec_mensal['Mes'] = df_rec_mensal['Data da Compra'].dt.month_name()

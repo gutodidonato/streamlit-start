@@ -11,12 +11,5 @@ def display(df):
     with coluna2:
         st.metric('Quantidade de Vendas', format_number(df.shape[0]))
         st.write(df_rec_estado)
-        
-        largura = st.slider("Largura do gráfico", 400, 800, 600)
-        altura = st.slider("Altura do gráfico", 400, 800, 500)
-
         grafico_map_estado = create_pydeck_map(df_rec_estado)
-        grafico_map_estado.initial_view_state.height = altura
-        grafico_map_estado.initial_view_state.width = largura
-
         st.pydeck_chart(grafico_map_estado)
